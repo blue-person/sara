@@ -10,16 +10,20 @@ contraseñaCorreo = "SonicSpeeder1991"
 # Configuracion de la voz
 voz = pyttsx3.init("sapi5")
 listadoVoces = voz.getProperty("voices")
-voz.setProperty("voice", listadoVoces[0].id) # Si la voz se escucha en ingles con palabras en español, hay que intercambiar el 0 por un 1 (o viceversa segun el caso)
+voz.setProperty(
+    "voice", listadoVoces[0].id
+)  # Si la voz se escucha en ingles con palabras en español, hay que intercambiar el 0 por un 1 (o viceversa segun el caso)
 
 # Configuracion de librerias
 solicitud_WolframAlpha = wolframalpha.Client(api_WolframAlpha)
 wikipedia.set_lang("es")
 
+
 # Funciones principales
 def decir(audio):
     voz.say(audio)
     voz.runAndWait()
+
 
 def escucharOrden():
     r = sr.Recognizer()
@@ -40,24 +44,28 @@ def escucharOrden():
         print("Di eso de nuevo por favor...")
         return "Error"
 
+
 # Frases
 def fraseConfirmacion():
     msg = ["Con gusto", "Vale", "De inmediato", "Claro", "Ok"]
     decir(random.choice(msg))
 
+
 def fraseAgradecimiento():
     msg = ["No te preocupes", "De nada", "No hay de qué", "Con gusto"]
     decir(random.choice(msg))
 
+
 def fraseSaludo():
     frases = [
         f"Hola {nombreUsuario}, Soy Sara. ¿Como puedo ayudarte?",
-        f"Hola {nombreUsuario}. ¿En qué puedo ayudarte?", 
+        f"Hola {nombreUsuario}. ¿En qué puedo ayudarte?",
         "¿Qué puedo hacer por ti?",
         "Bienvenido a Sara. ¿En qué te puedo ayudar?"
-        ]
+    ]
     saludoAleatorio = random.choice(frases)
     decir(saludoAleatorio)
+
 
 # Envio de correos
 def enviarCorreo_Conexion(destinatario, contenido):
@@ -67,6 +75,7 @@ def enviarCorreo_Conexion(destinatario, contenido):
     servidorCorreo.login(correoEmisor, contraseñaCorreo)
     servidorCorreo.sendmail(correoEmisor, destinatario, contenido)
     servidorCorreo.close()
+
 
 def enviarCorreo():
     try:
@@ -80,13 +89,16 @@ def enviarCorreo():
         decir("¡He enviado el correo")
     except Exception as error:
         print(error)
-        decir(f"Lo siento {nombreUsuario}. Sucedió un error y no pude enviar tu correo.")
+        decir(
+            f"Lo siento {nombreUsuario}. Sucedió un error y no pude enviar tu correo."
+        )
+
 
 # Acciones - Inicio
 def saludoFormal():
     momentoDia = int(datetime.datetime.now().hour)
     saludoDia = ""
-    
+
     if (momentoDia >= 0) and (momentoDia < 12):
         saludoDia = "¡Buenos días!"
     elif (momentoDia >= 12) and (momentoDia < 18):
@@ -95,12 +107,15 @@ def saludoFormal():
         saludoDia = "¡Buenas noches!"
     decir(saludoDia)
 
+
 def despedida():
     decir(f"Adiós {nombreUsuario}")
     sys.exit()
 
+
 def saludar():
     decir(f"Hola {nombreUsuario}")
+
 
 def internet(pagina, ordenUsuario):
     direccion = ""
@@ -118,48 +133,61 @@ def internet(pagina, ordenUsuario):
 
     elif (pagina == "maps"):
         direccion = "https://www.google.com/maps/place/"
-        decir("Estoy abriendo Gugol Maps para mostrarte la ubicacion de" + solicitud)
+        decir("Estoy abriendo Gugol Maps para mostrarte la ubicacion de" +
+              solicitud)
 
     else:
-        decir(f"Perdón {nombreUsuario}. No logre encontrar una respuesta a lo que pediste. Lo buscare en Gugol.")
+        decir(
+            f"Perdón {nombreUsuario}. No logre encontrar una respuesta a lo que pediste. Lo buscare en Gugol."
+        )
         ans = ordenUsuario
         direccion = "https://www.google.com/search?q="
         busqueda = direccion + ans
         webbrowser.open(busqueda)
         return
-    
+
     if (solicitud != pagina):
         cuest = solicitud
     else:
         decir(f"¿Qué te gustaría que buscara en {palabra}?")
         cuest = escucharOrden()
-    
+
     busqueda = direccion + cuest
     webbrowser.open(busqueda)
     fraseConfirmacion()
 
+
 def musica():
     directorio = os.path.expanduser("~") + "\\Music\\Gorillaz\\Humanz - (2017)"
-    canciones = ["'10. Andromeda (feat. D.R.A.M.).mp3'", "'03. Strobelite (feat. Peven Everett).mp3'"]
+    canciones = [
+        "'10. Andromeda (feat. D.R.A.M.).mp3'",
+        "'03. Strobelite (feat. Peven Everett).mp3'"
+    ]
     os.chdir(directorio)
     os.system(random.choice(canciones))
     fraseConfirmacion()
+
 
 def horaActual():
     hora = datetime.datetime.now().strftime("%#I:%M:%p")
     decir(f"Son las {hora}")
 
+
 def reiniciar():
     decir("Reiniciando sistema...")
     os.execl(sys.executable, sys.executable, *sys.argv)
+
 
 def editor():
     codePath = "C:\\Program Files (x86)\\Notepad++\\notepad++.exe"
     os.startfile(codePath)
     fraseConfirmacion()
 
+
 def respuestaDesconocida(alternativa, ordenUsuario):
-    decir("Realmente no lo sé. Quieres que intente buscarlo por medios externos?")
+    decir(
+        "Realmente no lo sé. Quieres que intente buscarlo por medios externos?"
+    )
     respuesta = escucharOrden()
 
     if ("si" in respuesta) or ("sí" in respuesta):
@@ -170,24 +198,28 @@ def respuestaDesconocida(alternativa, ordenUsuario):
     else:
         decir("Vale")
 
+
 def wolfram(ordenUsuario):
     orden = ordenUsuario.split("cuánto es ")
     res = solicitud_WolframAlpha.query(orden)
     results = next(res.results).text
     decir("Lo tengo! Según Wolfram-Alpha...")
     decir(results)
-            
+
+
 def wiki(ordenUsuario):
     results = wikipedia.summary(ordenUsuario, sentences=2)
     decir("Lo tengo! Según Wikipedia...")
     decir(results)
+
+
 # Acciones - Fin
 
 # Ejecucion Sara
 if __name__ == "__main__":
     saludoFormal()
     fraseSaludo()
-    
+
     while True:
         ordenUsuario = escucharOrden().lower()
         if ("adiós" in ordenUsuario) or ("apagate" in ordenUsuario):
@@ -222,8 +254,9 @@ if __name__ == "__main__":
 
         elif ("correo" in ordenUsuario):
             enviarCorreo()
-        
-        elif ("quién es" in ordenUsuario) or ("qué es" in ordenUsuario) or ("qué fue" in ordenUsuario):
+
+        elif ("quién es" in ordenUsuario) or ("qué es" in ordenUsuario) or (
+                "qué fue" in ordenUsuario):
             respuestaDesconocida(wiki, ordenUsuario)
 
         elif ("cuánto es" in ordenUsuario):
