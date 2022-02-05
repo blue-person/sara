@@ -2,9 +2,7 @@
 
 [![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](http://www.repostatus.org/badges/latest/abandoned.svg)](http://www.repostatus.org/#abandoned)
 
-A Personal Assistant for Linux, MacOS and Windows
-
-![Jarvis](http://i.imgur.com/xZ8x9ES.jpg)
+Una asistente virtual escrita en Python
 
 Jarvis is a simple personal assistant for Linux, MacOS and Windows which works on the command line. He can talk to you if you enable his voice. He can tell you the weather, he can find restaurants and other places near you. He can do some great stuff for you.
 
