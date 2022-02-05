@@ -10,7 +10,7 @@ Sara es una asistente virtual simple que trabaja por medio de Python. Tiene la c
 
 Sara fue desarrollada cuando apenas estaba aprendiendo a programar, siendo siempre un proyecto sencillo que se desarrollaba lentamente según tenia nuevas ideas. Por lo anterior, el código es bastante desorganizado y tiende a fallar bastante.
 
-### Entonces, si es código defectuoso y problemático, ¿por que no lo eliminas y ya?
+#### Entonces, si es código defectuoso y problemático, ¿por que no lo eliminas y ya?
 
 ## Getting Started
 
