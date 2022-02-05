@@ -1,0 +1,5 @@
+unidecode
+SpeechRecognition
+pyttsx3
+wikipedia
+wolframalpha

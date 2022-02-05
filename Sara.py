@@ -1,263 +1,223 @@
 import speech_recognition as sr
-import os, sys, pyttsx3, datetime, webbrowser, smtplib, random, wikipedia, wolframalpha
+import pyttsx3 as ptt
+import os, sys, datetime, webbrowser, random, wikipedia, wolframalpha, unidecode
+from servicios import variables_entorno
 
 # Variables
-nombreUsuario = "Usuario"
-api_WolframAlpha = "4VK6W8-UTHAEWRYUA"
-correoEmisor = "pruebasprousuario@gmail.com"
-contraseñaCorreo = "SonicSpeeder1991"
+nombre_usuario = "Usuario"
+lista_despedidas = ["adios", "hasta luego", "hasta pronto", "hasta mañana"]
+lista_saludos = ["hola", "buenos dias", "buenas tardes", "buenas noches"]
+lista_agradecimientos = ["gracias"]
+lista_youtube = ["youtube", "yutub", "yutube", "yutube.com", "videos"]
+lista_google = ["google", "gugol", "gugol.com", "buscar"]
+lista_musica = ["pon musica", "musica", "reproduce", "reproduce musica"]
+lista_ubicaciones = ["donde esta", "donde queda", "donde esta ubicado"]
+lista_wikipedia = ["quien es", "que es", "que fue", "que paso en"]
+lista_calculo = ["cuanto da", "cuanto es"]
 
 # Configuracion de la voz
-voz = pyttsx3.init("sapi5")
-listadoVoces = voz.getProperty("voices")
-voz.setProperty(
-    "voice", listadoVoces[0].id
-)  # Si la voz se escucha en ingles con palabras en español, hay que intercambiar el 0 por un 1 (o viceversa segun el caso)
+if sys.platform == "win32":
+    dialogo_sara = ptt.init(driverName="sapi5")
+    lista_voces = dialogo_sara.getProperty("voices")
+    voz = lista_voces[0].id
+elif sys.platform == "darwin":
+    dialogo_sara = ptt.init(driverName="nsss")
+    voz = "es-la+f5"
+else:
+    dialogo_sara = ptt.init(driverName="espeak")
+    voz = "es-la+f5"
 
-# Configuracion de librerias
-solicitud_WolframAlpha = wolframalpha.Client(api_WolframAlpha)
+# Configuracion de servicios
+cliente_wolfram = wolframalpha.Client(variables_entorno.API_WOLFRAM)
 wikipedia.set_lang("es")
 
 
 # Funciones principales
-def decir(audio):
-    voz.say(audio)
-    voz.runAndWait()
+def decir_mensaje(mensaje):
+    dialogo_sara.say(mensaje)
+    dialogo_sara.runAndWait()
 
 
-def escucharOrden():
-    r = sr.Recognizer()
-    segundosEspera = 0.5
+def escuchar_microfono():
+    reconocimiento_voz = sr.Recognizer()
 
-    with sr.Microphone() as audioMicrofono:
-        print("Escuchando...")
-        r.pause_threshold = segundosEspera
-        audio = r.listen(audioMicrofono)
+    with sr.Microphone() as microfono:
+        print("Ajustando micrófono...\n")
+        reconocimiento_voz.adjust_for_ambient_noise(microfono, duration=0.5)
+        print("Micrófono listo. Estoy lista para escucharte\n")
+        audio = reconocimiento_voz.listen(microfono)
 
     try:
-        print("Reconociendo...")
-        ordenUsuario = r.recognize_google(audio, language="es-CO")
-        print(f"Usted dijo: {ordenUsuario}\n")
-        return ordenUsuario
-    except:
-        decir("No te he entendido bien, ¿puedes decirlo de nuevo?")
-        print("Di eso de nuevo por favor...")
-        return "Error"
-
-
-# Frases
-def fraseConfirmacion():
-    msg = ["Con gusto", "Vale", "De inmediato", "Claro", "Ok"]
-    decir(random.choice(msg))
-
-
-def fraseAgradecimiento():
-    msg = ["No te preocupes", "De nada", "No hay de qué", "Con gusto"]
-    decir(random.choice(msg))
-
-
-def fraseSaludo():
-    frases = [
-        f"Hola {nombreUsuario}, Soy Sara. ¿Como puedo ayudarte?",
-        f"Hola {nombreUsuario}. ¿En qué puedo ayudarte?",
-        "¿Qué puedo hacer por ti?",
-        "Bienvenido a Sara. ¿En qué te puedo ayudar?"
-    ]
-    saludoAleatorio = random.choice(frases)
-    decir(saludoAleatorio)
-
-
-# Envio de correos
-def enviarCorreo_Conexion(destinatario, contenido):
-    servidorCorreo = smtplib.SMTP("smtp.gmail.com", 587)
-    servidorCorreo.ehlo()
-    servidorCorreo.starttls()
-    servidorCorreo.login(correoEmisor, contraseñaCorreo)
-    servidorCorreo.sendmail(correoEmisor, destinatario, contenido)
-    servidorCorreo.close()
-
-
-def enviarCorreo():
-    try:
-        decir("¿A quién se lo deseas enviar?")
-        correoDestinatario = escucharOrden() + "@gmail.com"
-
-        decir("¿Qué quieres que ponga en el mensaje?")
-        contenido = escucharOrden()
-
-        enviarCorreo_Conexion(correoDestinatario, contenido)
-        decir("¡He enviado el correo")
-    except Exception as error:
-        print(error)
-        decir(
-            f"Lo siento {nombreUsuario}. Sucedió un error y no pude enviar tu correo."
+        print("Procesando mensaje...\n")
+        consulta_usuario = reconocimiento_voz.recognize_google(
+            audio, language="es-US")
+        return consulta_usuario
+    except sr.UnknownValueError:
+        decir_mensaje(
+            "No he entendido bien lo que me pediste, di eso de nuevo por favor"
         )
+        escuchar_microfono()
 
 
-# Acciones - Inicio
-def saludoFormal():
-    momentoDia = int(datetime.datetime.now().hour)
-    saludoDia = ""
+# Seleccion de frases
+def frases_confirmacion():
+    lista_frases = ["Con gusto", "Vale", "De inmediato", "Claro", "Ok"]
+    frase_seleccionada = random.choice(lista_frases)
+    decir_mensaje(frase_seleccionada)
 
-    if (momentoDia >= 0) and (momentoDia < 12):
-        saludoDia = "¡Buenos días!"
-    elif (momentoDia >= 12) and (momentoDia < 18):
-        saludoDia = "¡Buenas tardes!"
+
+def frases_agradecimiento():
+    lista_frases = ["No te preocupes", "De nada", "No hay de qué", "Con gusto"]
+    frase_seleccionada = random.choice(lista_frases)
+    decir_mensaje(frase_seleccionada)
+
+
+def frases_saludo():
+    lista_frases = [
+        f"Hola {nombre_usuario}, soy Sara. ¿Como puedo ayudarte?",
+        f"Hola {nombre_usuario}. ¿En qué puedo ayudarte?",
+        "¿Qué puedo hacer por ti?", "Bienvenido. ¿En qué te puedo ayudar?"
+    ]
+    frase_seleccionada = random.choice(lista_frases)
+    decir_mensaje(f"{momento_dia()}. {frase_seleccionada}")
+
+
+# Habilidades
+def momento_dia():
+    hora = int(datetime.datetime.now().hour)
+
+    if (hora >= 6) and (hora < 12):
+        return "¡Buenos días!"
+    elif (hora >= 12) and (hora < 19):
+        return "¡Buenas tardes!"
     else:
-        saludoDia = "¡Buenas noches!"
-    decir(saludoDia)
+        return "¡Buenas noches!"
 
 
-def despedida():
-    decir(f"Adiós {nombreUsuario}")
-    sys.exit()
+def despedirse():
+    decir_mensaje(f"Adiós {nombre_usuario}")
 
 
-def saludar():
-    decir(f"Hola {nombreUsuario}")
+def poner_musica():
+    webbrowser.open(
+        "https://www.youtube.com/watch?v=zisuhZqTeH4&list=PLp22EiLpMLDdvp6C4W2plwhyoAF-pXASA"
+    )
+    frases_confirmacion()
 
 
-def internet(pagina, ordenUsuario):
+def buscar_internet(pagina, consulta_usuario):
     direccion = ""
-    cuest = ""
     palabra = ""
-    solicitud = ordenUsuario.split()[-1]
+    solicitud_busqueda = ""
+    solicitud = consulta_usuario.split()[-1]
 
-    if (pagina == "google"):
+    if pagina == "google":
         palabra = "Gugol"
         direccion = "https://www.google.com/search?q="
-
-    elif (pagina == "youtube"):
+    elif pagina == "youtube":
         palabra = "Yutub"
         direccion = "https://www.youtube.com/results?search_query="
-
-    elif (pagina == "maps"):
+    elif pagina == "maps":
         direccion = "https://www.google.com/maps/place/"
-        decir("Estoy abriendo Gugol Maps para mostrarte la ubicacion de" +
-              solicitud)
-
+        decir_mensaje(
+            "Estoy abriendo Gugol Maps para mostrarte la ubicacion de" +
+            solicitud)
     else:
-        decir(
-            f"Perdón {nombreUsuario}. No logre encontrar una respuesta a lo que pediste. Lo buscare en Gugol."
+        decir_mensaje(
+            f"Perdón {nombre_usuario}. No logre encontrar una respuesta a lo que pediste. Lo buscare en Gugol."
         )
-        ans = ordenUsuario
         direccion = "https://www.google.com/search?q="
-        busqueda = direccion + ans
+        busqueda = direccion + consulta_usuario
         webbrowser.open(busqueda)
-        return
 
-    if (solicitud != pagina):
-        cuest = solicitud
+    if solicitud == pagina:
+        decir_mensaje(f"¿Qué te gustaría que buscara en {palabra}?")
+        solicitud_busqueda = escuchar_microfono()
     else:
-        decir(f"¿Qué te gustaría que buscara en {palabra}?")
-        cuest = escucharOrden()
+        solicitud_busqueda = solicitud
 
-    busqueda = direccion + cuest
+    busqueda = direccion + solicitud_busqueda
     webbrowser.open(busqueda)
-    fraseConfirmacion()
+    frases_confirmacion()
 
 
-def musica():
-    directorio = os.path.expanduser("~") + "\\Music\\Gorillaz\\Humanz - (2017)"
-    canciones = [
-        "'10. Andromeda (feat. D.R.A.M.).mp3'",
-        "'03. Strobelite (feat. Peven Everett).mp3'"
-    ]
-    os.chdir(directorio)
-    os.system(random.choice(canciones))
-    fraseConfirmacion()
+def realizar_calculo(orden_usuario):
+    orden = orden_usuario.split("cuanto es ")
+    solicitud = cliente_wolfram.query(orden)
+    resultado = next(solicitud.results).text
+    decir_mensaje(f"Lo tengo! Según Wolfram-Alpha {orden} es {resultado}")
 
 
-def horaActual():
+def buscar_wikipedia(orden_usuario):
+    resultado = wikipedia.summary(orden_usuario, sentences=2)
+    decir_mensaje(f"Lo tengo! Según Wikipedia... {resultado}")
+
+
+def respuesta_desconocida(funcion_alternativa, orden_usuario):
+    lista_frases = ["si", "ok", "claro", "de inmediato", "vale"]
+
+    decir_mensaje(
+        "Realmente no lo sé. Quieres que intente buscarlo por medios externos?"
+    )
+    respuesta = escuchar_microfono()
+
+    if respuesta in lista_frases:
+        try:
+            funcion_alternativa(orden_usuario)
+        except:
+            buscar_internet("error", orden_usuario)
+    else:
+        decir_mensaje("Vale")
+
+
+def decir_hora_actual():
     hora = datetime.datetime.now().strftime("%#I:%M:%p")
-    decir(f"Son las {hora}")
+    decir_mensaje(f"Son las {hora}")
 
 
 def reiniciar():
-    decir("Reiniciando sistema...")
+    decir_mensaje("Reiniciandome...")
+    despedirse()
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-def editor():
-    codePath = "C:\\Program Files (x86)\\Notepad++\\notepad++.exe"
-    os.startfile(codePath)
-    fraseConfirmacion()
-
-
-def respuestaDesconocida(alternativa, ordenUsuario):
-    decir(
-        "Realmente no lo sé. Quieres que intente buscarlo por medios externos?"
-    )
-    respuesta = escucharOrden()
-
-    if ("si" in respuesta) or ("sí" in respuesta):
-        try:
-            alternativa(ordenUsuario)
-        except:
-            internet("error", ordenUsuario)
-    else:
-        decir("Vale")
-
-
-def wolfram(ordenUsuario):
-    orden = ordenUsuario.split("cuánto es ")
-    res = solicitud_WolframAlpha.query(orden)
-    results = next(res.results).text
-    decir("Lo tengo! Según Wolfram-Alpha...")
-    decir(results)
-
-
-def wiki(ordenUsuario):
-    results = wikipedia.summary(ordenUsuario, sentences=2)
-    decir("Lo tengo! Según Wikipedia...")
-    decir(results)
-
-
-# Acciones - Fin
-
-# Ejecucion Sara
+# Nucleo
 if __name__ == "__main__":
-    saludoFormal()
-    fraseSaludo()
+    frases_saludo()
 
     while True:
-        ordenUsuario = escucharOrden().lower()
-        if ("adiós" in ordenUsuario) or ("apagate" in ordenUsuario):
-            despedida()
+        orden_usuario = unidecode.unidecode(escuchar_microfono().lower())
 
-        elif ("hola" in ordenUsuario):
-            saludar()
+        if orden_usuario in lista_despedidas:
+            despedirse()
+            break
 
-        elif ("gracias" in ordenUsuario):
-            fraseAgradecimiento()
+        elif orden_usuario in lista_saludos:
+            frases_saludo()
 
-        elif ("youtube" in ordenUsuario) or ("Youtube" in ordenUsuario):
-            internet("youtube", ordenUsuario)
+        elif orden_usuario in lista_agradecimientos:
+            frases_agradecimiento()
 
-        elif ("google" in ordenUsuario) or ("Google" in ordenUsuario):
-            internet("google", ordenUsuario)
+        elif orden_usuario in lista_youtube:
+            buscar_internet("youtube", orden_usuario)
 
-        elif ("música" in ordenUsuario):
-            musica()
+        elif orden_usuario in lista_google:
+            buscar_internet("google", orden_usuario)
 
-        elif ("hora" in ordenUsuario):
-            horaActual()
+        elif orden_usuario in lista_ubicaciones:
+            buscar_internet("maps", orden_usuario)
 
-        elif ("reiniciate" in ordenUsuario):
+        elif orden_usuario in lista_musica:
+            poner_musica()
+
+        elif orden_usuario in lista_calculo:
+            respuesta_desconocida(realizar_calculo, orden_usuario)
+
+        elif orden_usuario in lista_wikipedia:
+            respuesta_desconocida(buscar_wikipedia, orden_usuario)
+
+        elif ("hora" in orden_usuario):
+            decir_hora_actual()
+
+        elif ("reiniciate" in orden_usuario):
             reiniciar()
-
-        elif ("editor" in ordenUsuario):
-            editor()
-
-        elif ("dónde queda" in ordenUsuario) or ("dónde está" in ordenUsuario):
-            internet("maps", ordenUsuario)
-
-        elif ("correo" in ordenUsuario):
-            enviarCorreo()
-
-        elif ("quién es" in ordenUsuario) or ("qué es" in ordenUsuario) or (
-                "qué fue" in ordenUsuario):
-            respuestaDesconocida(wiki, ordenUsuario)
-
-        elif ("cuánto es" in ordenUsuario):
-            respuestaDesconocida(wolfram, ordenUsuario)
