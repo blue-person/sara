@@ -29,12 +29,12 @@ Esa **si** es una buena pregunta. Solo el tiempo lo dirá.
 Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](https://github.com/BlueBird-BH/Sara.git) e instalar las dependencias a continuación. Se recomienda utilizar la última versión de Python 3.
 
 ### Dependencias
-- unidecode
-- SpeechRecognition
-- pyttsx3
-- wikipedia
-- wolframalpha
-- PyAudio*
+- ``unidecode``
+- ``SpeechRecognition``
+- ``pyttsx3``
+- ``wikipedia``
+- ``wolframalpha``
+- ``PyAudio``*
 
 In order to start Jarvis just clone [this repository](https://github.com/sukeesh/Jarvis.git) and run `python installer`.
 
