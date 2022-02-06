@@ -2,7 +2,7 @@
 
 [![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](http://www.repostatus.org/badges/latest/abandoned.svg)](http://www.repostatus.org/#abandoned)
 
-#### Una asistente virtual para escritorio
+**Una asistente virtual para escritorio**
 
 Sara es una asistente virtual simple que trabaja por medio de Python. Tiene la capacidad de comunicarse por medio de un motor de voz y reconocer las solicitudes del usuario por medio del micrófono. Puede realizar búsquedas en internet, decir la hora actual, poner música y demás.
 
@@ -93,7 +93,7 @@ Run with docker (docker needs to be installed and running):
 
 ## Authors
 
- **sukeesh**
+ **Blue Bird**
 
 See also the list of [contributors](https://github.com/sukeesh/Jarvis/graphs/contributors) who have participated in this project.
 
