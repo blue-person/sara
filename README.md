@@ -24,11 +24,12 @@ Con el tiempo iré publicando estos bots, pero por ahora solo Sara estará dispo
 
 Esa **si** es una buena pregunta. Solo el tiempo lo dirá. 
 
-## Getting Started
+## Como comenzar
 
 Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](https://github.com/BlueBird-BH/Sara.git) e instalar las dependencias a continuación. Se recomienda utilizar la última versión de Python 3.
 
 ### Dependencias
+
 - ``unidecode``
 - ``SpeechRecognition``
 - ``pyttsx3``
@@ -37,19 +38,28 @@ Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](http
 - ``PyAudio``*
 
 #### Instalar PyAudio
+
 Instalar PyAudio puede ser un poco más difícil que cualquier otra de las anteriores dependencias, pues se debe instalar un archivo en específico, pues debe ser descargado el archivo e instalado manualmente. 
 
 ##### Windows
+
 En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros) del repositorio, se debe descargar la version de 32 o 64 bits segun corresponda a tu sistema. Sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 
 Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
 ##### GNU/Linux
+
 Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cualquier sistema GNU/Linux siempre y cuando se tenga acceso a los siguientes paquetes. Solo se debe ejecutar en una terminal lo siguiente:
 
 - ``sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0``
 - ``sudo apt-get install ffmpeg libav-tools``
 - ``sudo pip3 install pyaudio``
+
+### Uso de Sara
+
+Una vez se hayan instalado todas las dependencias de Sara, solo es necesario ejecutar con Python el archivo [sara.py](https://github.com/BlueBird-BH/Sara/blob/main/sara.py)
+
+El programa iniciara y solo tendrás que comunicarte con Sara por medio del micrófono. Se debe estar pendiente de los mensajes que aparezcan en la pantalla pues por ahí se te avisara cuando Sara haya calibrado el micrófono para poder escucharte claramente. 
 
 ## Autor
 
