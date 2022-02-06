@@ -55,6 +55,14 @@ Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cu
 - ``sudo apt-get install ffmpeg libav-tools``
 - ``sudo pip3 install pyaudio``
 
+### Variables de entorno
+
+Para poder usar Sara sin problemas, es necesario tener una API de Wolfram. Para conseguir una solo debes registrarte en la [web de Wolfram Alpha](https://products.wolframalpha.com/api/), son completamente gratuitas. Una vez tengas tu propia API key, solo es necesario crear un archivo que se llame .env en la carpeta [otros](https://github.com/BlueBird-BH/Sara/tree/main/otros), en este archivo se debe ingresar lo siguiente:
+```
+API_WOLFRAM="Tu API Key"
+```
+
+
 ### Uso de Sara
 
 Una vez se hayan instalado todas las dependencias de Sara, solo es necesario ejecutar con Python el archivo [sara.py](https://github.com/BlueBird-BH/Sara/blob/main/sara.py)
