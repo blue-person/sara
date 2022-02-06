@@ -203,19 +203,19 @@ if __name__ == "__main__":
 
         elif orden_usuario in lista_google:
             buscar_internet("google", orden_usuario)
-
+            
         elif orden_usuario in lista_ubicaciones:
             buscar_internet("maps", orden_usuario)
-
-        elif orden_usuario in lista_musica:
-            poner_musica()
-
+            
         elif orden_usuario in lista_calculo:
             respuesta_desconocida(realizar_calculo, orden_usuario)
 
         elif orden_usuario in lista_wikipedia:
             respuesta_desconocida(buscar_wikipedia, orden_usuario)
 
+        elif orden_usuario in lista_musica:
+            poner_musica()
+            
         elif ("hora" in orden_usuario):
             decir_hora_actual()
 
