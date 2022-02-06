@@ -1,4 +1,4 @@
-# Sara
+# Sara 👩
 
 [![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](http://www.repostatus.org/badges/latest/abandoned.svg)](http://www.repostatus.org/#abandoned)
 
@@ -41,13 +41,13 @@ Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](http
 
 Instalar PyAudio puede ser un poco más difícil que cualquier otra de las anteriores dependencias, pues se debe instalar un archivo en específico, pues debe ser descargado el archivo e instalado manualmente. 
 
-##### Windows
+##### Windows 🪟
 
 En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros) del repositorio, se debe descargar la version de 32 o 64 bits segun corresponda a tu sistema. Sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 
 Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
-##### GNU/Linux
+##### GNU/Linux 🐧
 
 Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cualquier sistema GNU/Linux siempre y cuando se tenga acceso a los siguientes paquetes. Solo se debe ejecutar en una terminal lo siguiente:
 
@@ -58,10 +58,10 @@ Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cu
 ### Variables de entorno
 
 Para poder usar Sara sin problemas, es necesario tener una API de Wolfram. Para conseguir una solo debes registrarte en la [web de Wolfram Alpha](https://products.wolframalpha.com/api/), son completamente gratuitas. Una vez tengas tu propia API key, solo es necesario crear un archivo que se llame .env en la carpeta [otros](https://github.com/BlueBird-BH/Sara/tree/main/otros), en este archivo se debe ingresar lo siguiente:
+
 ```
 API_WOLFRAM="Tu API Key"
 ```
-
 
 ### Uso de Sara
 
@@ -72,9 +72,8 @@ El programa iniciara y solo tendrás que comunicarte con Sara por medio del micr
 ## Autor
 
  **Blue Bird**
- 
- Correo: bluebird.pbq@gmail.com
+ Correo 📧: bluebird.pbq@gmail.com
 
-## Licencia
+## Licencia 📜
 
 Este proyecto cuenta con la licencia Apache License 2.0 - vea el archivo [LICENSE](LICENSE) para más detalles
