@@ -72,7 +72,8 @@ El programa iniciara y solo tendrás que comunicarte con Sara por medio del micr
 ## Autor
 
  **Blue Bird**
- Correo 📧: bluebird.pbq@gmail.com
+ 
+ 📧 bluebird.pbq@gmail.com
 
 ## Licencia 📜
 
