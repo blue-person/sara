@@ -36,15 +36,14 @@ Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](http
 - ``wolframalpha``
 - ``PyAudio``*
 
-In order to start Jarvis just clone [this repository](https://github.com/sukeesh/Jarvis.git) and run `python installer`.
+#### Instalar PyAudio
 
-Run **Jarvis** from anywhere by command `jarvis`
+Instalar PyAudio puede ser un poco más difícil que cualquier otra de las anteriores dependencias, pues se debe instalar un archivo en específico, pues debe ser descargado el archivo e instalado manualmente. 
 
-On Mac OS X run `source setup.sh`
+#### Windows
+En el casos de sistemas Windows, este archivo (para dispositivos de 64 bits) puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros/PyAudio-0.2.11-cp310-cp310-win_amd64.whl) del repositorio, sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 
-On Windows run `setup.bat`
-
-You can start by typing `help` within the Jarvis command line to check what Jarvis can do for you.
+Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
 ## Contributing
 
