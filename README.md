@@ -37,50 +37,29 @@ Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](http
 - ``PyAudio``*
 
 #### Instalar PyAudio
-
 Instalar PyAudio puede ser un poco más difícil que cualquier otra de las anteriores dependencias, pues se debe instalar un archivo en específico, pues debe ser descargado el archivo e instalado manualmente. 
 
-#### Windows
-En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros) del repositorio, sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
+##### Windows
+En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros) del repositorio, se debe descargar la version de 32 o 64 bits segun corresponda a tu sistema. Sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 
 Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
-## Contributing
+##### GNU/Linux
+Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cualquier sistema GNU/Linux siempre y cuando se tenga acceso a los siguientes paquetes:
+- libasound-dev
+- portaudio19-dev
+- libportaudio2
+- libportaudiocpp0
+- ffmpeg
+- libav-tools
 
-Check out our [CONTRIBUTING.md](CONTRIBUTING.md) to learn how you can contribute!
+Solo se debe ejecutar en una terminal lo siguiente
 
-### QuickStart: Create a new feature (plugin)
-
-Create new file custom/hello_world.py
-
-```
-from plugin import plugin
-
-
-@plugin("helloworld")
-def helloworld(jarvis, s):
-    """Repeats what you type"""
-    jarvis.say(s)
-```
-
-Check it out!
-```
-./jarvis
-Jarvis' sound is by default disabled.
-In order to let Jarvis talk out loud type: enable sound
-Type 'help' for a list of available actions.
-
-~> Hi, what can I do for you?
-helloworld Jarvis is cool!
-jarvis is cool
-```
-
-## Optional Dependencies
-
-- Any pyttsx3 text-to-speech engine (``sapi5, nsss or espeak``) for Jarvis to talk out loud (e.g. Ubuntu do ``sudo apt install espeak``)
-- Portaudio + python-devel packages for voice control
-- ``notify-send`` on Linux if you want to receive *nice* and desktop-notification instead of *ugly* pop up windows (e.g. Ubuntu do ``sudo apt install libnotify-bin``)
-- ``ffmpeg`` if you want ``music`` to download songs as .mp3 instead of .webm
+``
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+sudo apt-get install ffmpeg libav-tools
+sudo pip3 install pyaudio
+``
 
 ## Autor
 
