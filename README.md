@@ -97,6 +97,6 @@ Run with docker (docker needs to be installed and running):
 
 See also the list of [contributors](https://github.com/sukeesh/Jarvis/graphs/contributors) who have participated in this project.
 
-## License
+## Licencia
 
-Este proyecto cuenta con la licencia Apache License 2.0 - vea el archivo de [LICENSE](LICENSE) para más detalles
+Este proyecto cuenta con la licencia Apache License 2.0 - vea el archivo [LICENSE](LICENSE) para más detalles
