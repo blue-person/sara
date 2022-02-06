@@ -12,6 +12,18 @@ Sara fue desarrollada cuando apenas estaba aprendiendo a programar, siendo siemp
 
 #### Entonces, si es código defectuoso y problemático, ¿por que no lo eliminas y ya?
 
+Bueno, porque fue el primer programa que realmente me enorgulleció. Quiero conservarlo de alguna manera por mas que ya no vaya a trabajar en él, y considero que tener el código en GitHub es más útil que dejarlo en un .rar perdido en mis carpetas. Al menos aquí, si alguien lo encuentra, puede que le sea de utilidad para crear su propio proyecto.
+
+#### ¿Y por que no sigues trabajando en el código, así haces que sea más claro de entender y funcione mejor en general?
+
+Es buena idea, tan buena que ya lo hice. Decidí expandir la idea y usar diversas ideas de Sara para crear un nuevo proyecto, la Familia Sara. Es un proyecto que busca crear diferentes asistentes virtuales y cada una que funcione para un caso específico, por ejemplo un bot para WhatsApp, otro que funcione en computadoras de escritorio y pueda recibir ordenes por micrófono, o incluso uno que sea una plantilla para crear cualquier tipo de bot pero solo sea necesario cambiar pocas partes del código.
+
+Con el tiempo iré publicando estos bots, pero por ahora solo Sara estará disponible.
+
+#### Vale, ¿entonces cuando subirás los demás bots?
+
+Esa **si** es una buena pregunta. Solo el tiempo lo dirá. 
+
 ## Getting Started
 
 In order to start Jarvis just clone [this repository](https://github.com/sukeesh/Jarvis.git) and run `python installer`.
@@ -23,11 +35,6 @@ On Mac OS X run `source setup.sh`
 On Windows run `setup.bat`
 
 You can start by typing `help` within the Jarvis command line to check what Jarvis can do for you.
-
-
-## Youtube Video Showing Jarvis
-
-[Click here](https://www.youtube.com/watch?v=PR-nxqmG3V8)
 
 ## Contributing
 
@@ -59,37 +66,12 @@ helloworld Jarvis is cool!
 jarvis is cool
 ```
 
-### Plugins
-
-[Click here](doc/PLUGINS.md) to learn more about plugins.
-
-### Creating a test
-
-Creating a test is optional but never a bad idea ;).
-
-[Click here](doc/TESTING.md) to learn more about testing.
-
-### How to run tests:
-
- Run `test.sh`
- ```bash
- ./test.sh
- ```
 ## Optional Dependencies
 
 - Any pyttsx3 text-to-speech engine (``sapi5, nsss or espeak``) for Jarvis to talk out loud (e.g. Ubuntu do ``sudo apt install espeak``)
 - Portaudio + python-devel packages for voice control
 - ``notify-send`` on Linux if you want to receive *nice* and desktop-notification instead of *ugly* pop up windows (e.g. Ubuntu do ``sudo apt install libnotify-bin``)
 - ``ffmpeg`` if you want ``music`` to download songs as .mp3 instead of .webm
-
-## Docker
-
-Run with docker (docker needs to be installed and running):
-
-```
-[sudo] make build_docker
-[sudo] make run_docker
-```
 
 ## Autor
 
