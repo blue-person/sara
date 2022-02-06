@@ -71,9 +71,9 @@ El programa iniciara y solo tendrás que comunicarte con Sara por medio del micr
 
 ## Autor
 
- 👤Blue Bird
+ 👤Alejandro Buelvas Garcia
  
- ✉ bluebird.pbq@gmail.com
+ ✉ abuelvas.cpc@gmail.com
 
 ## Licencia
 
