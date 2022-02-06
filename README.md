@@ -94,7 +94,8 @@ Run with docker (docker needs to be installed and running):
 ## Autor
 
  **Blue Bird**
- bluebird.pbq@gmail.com
+ 
+ Correo: bluebird.pbq@gmail.com
 
 ## Licencia
 
