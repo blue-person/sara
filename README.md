@@ -45,19 +45,11 @@ En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [o
 Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
 ##### GNU/Linux
-Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cualquier sistema GNU/Linux siempre y cuando se tenga acceso a los siguientes paquetes:
-- libasound-dev
-- portaudio19-dev
-- libportaudio2
-- libportaudiocpp0
-- ffmpeg
-- libav-tools
+Esta guía se hará tomando a Ubuntu como ejemplo, pero debería funcionar en cualquier sistema GNU/Linux siempre y cuando se tenga acceso a los siguientes paquetes. Solo se debe ejecutar en una terminal lo siguiente:
 
-Solo se debe ejecutar en una terminal lo siguiente:
-
-``sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0``
-``sudo apt-get install ffmpeg libav-tools``
-``sudo pip3 install pyaudio``
+- ``sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0``
+- ``sudo apt-get install ffmpeg libav-tools``
+- ``sudo pip3 install pyaudio``
 
 ## Autor
 
