@@ -99,4 +99,4 @@ See also the list of [contributors](https://github.com/sukeesh/Jarvis/graphs/con
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Este proyecto cuenta con la licencia Apache License 2.0 - vea el archivo de [LICENSE](LICENSE) para más detalles
