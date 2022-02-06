@@ -91,11 +91,10 @@ Run with docker (docker needs to be installed and running):
 [sudo] make run_docker
 ```
 
-## Authors
+## Autor
 
  **Blue Bird**
-
-See also the list of [contributors](https://github.com/sukeesh/Jarvis/graphs/contributors) who have participated in this project.
+ bluebird.pbq@gmail.com
 
 ## Licencia
 
