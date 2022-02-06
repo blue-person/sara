@@ -41,7 +41,7 @@ Para utilizar Sara lo primero que debe hacerse es clonar [este repositorio](http
 Instalar PyAudio puede ser un poco más difícil que cualquier otra de las anteriores dependencias, pues se debe instalar un archivo en específico, pues debe ser descargado el archivo e instalado manualmente. 
 
 #### Windows
-En el casos de sistemas Windows, este archivo (para dispositivos de 64 bits) puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros/PyAudio-0.2.11-cp310-cp310-win_amd64.whl) del repositorio, sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
+En el casos de sistemas Windows, este archivo puede encontrarse en la carpeta [otros](https://github.com/BlueBird-BH/Sara/blob/main/otros) del repositorio, sin embargo, de ser necesario se puede descargar manualmente desde la [siguiente pagina](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 
 Una vez descargado el archivo, debemos abrir una terminal donde tenemos el archivo y ejecutar el comando (la version de PyAudio puede variar) ``pip install PyAudio-x.x.x-cp3x-cp3x-winx.whl``
 
