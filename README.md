@@ -10,17 +10,17 @@ Sara es una asistente virtual simple que trabaja por medio de Python. Tiene la c
 
 Sara fue desarrollada cuando apenas estaba aprendiendo a programar, siendo siempre un proyecto sencillo que se desarrollaba lentamente según tenia nuevas ideas. Por lo anterior, el código es bastante desorganizado y tiende a fallar bastante.
 
-#### Entonces, si es código defectuoso y problemático, ¿por que no lo eliminas y ya?
+### Entonces, si es código defectuoso y problemático, ¿por que no lo eliminas y ya?
 
 Bueno, porque fue el primer programa que realmente me enorgulleció. Quiero conservarlo de alguna manera por mas que ya no vaya a trabajar en él, y considero que tener el código en GitHub es más útil que dejarlo en un .rar perdido en mis carpetas. Al menos aquí, si alguien lo encuentra, puede que le sea de utilidad para crear su propio proyecto.
 
-#### ¿Y por que no sigues trabajando en el código, así haces que sea más claro de entender y funcione mejor en general?
+### ¿Y por que no sigues trabajando en el código, así haces que sea más claro de entender y funcione mejor en general?
 
 Es buena idea, tan buena que ya lo hice. Decidí expandir la idea y usar diversas ideas de Sara para crear un nuevo proyecto, la Familia Sara. Es un proyecto que busca crear diferentes asistentes virtuales y cada una que funcione para un caso específico, por ejemplo un bot para WhatsApp, otro que funcione en computadoras de escritorio y pueda recibir ordenes por micrófono, o incluso uno que sea una plantilla para crear cualquier tipo de bot pero solo sea necesario cambiar pocas partes del código.
 
 Con el tiempo iré publicando estos bots, pero por ahora solo Sara estará disponible.
 
-#### Vale, ¿entonces cuando subirás los demás bots?
+### Vale, ¿entonces cuando subirás los demás bots?
 
 Esa **si** es una buena pregunta. Solo el tiempo lo dirá. 
 
