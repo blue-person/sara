@@ -75,6 +75,6 @@ El programa iniciara y solo tendrás que comunicarte con Sara por medio del micr
  
  ✉ bluebird.pbq@gmail.com
 
-## Licencia 📜
+## Licencia
 
 Este proyecto cuenta con la licencia Apache License 2.0 - vea el archivo [LICENSE](LICENSE) para más detalles
