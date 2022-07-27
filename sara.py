@@ -203,10 +203,10 @@ if __name__ == "__main__":
 
         elif orden_usuario in lista_google:
             buscar_internet("google", orden_usuario)
-            
+
         elif orden_usuario in lista_ubicaciones:
             buscar_internet("maps", orden_usuario)
-            
+
         elif orden_usuario in lista_calculo:
             respuesta_desconocida(realizar_calculo, orden_usuario)
 
@@ -215,7 +215,7 @@ if __name__ == "__main__":
 
         elif orden_usuario in lista_musica:
             poner_musica()
-            
+
         elif ("hora" in orden_usuario):
             decir_hora_actual()
 
